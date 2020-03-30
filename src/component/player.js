@@ -115,6 +115,13 @@ export default class YouTubePlayer extends Component {
     }
 
     playNextVideo() {
+
+        // llogic for removing played video
+        let indexOfPlayedVideo = this.state.playlist.indexOf(this.state.currentVideo);
+        this.state.playlist.splice(indexOfPlayedVideo, 1)
+        this.setState(this.state.playlist);
+
+        // logic for playing new video
         let playingVideo = this.state.currentVideo;
         let indexOfPlayingVideo = this.state.playlist.indexOf(playingVideo)
         let indexOfNextVideo = indexOfPlayingVideo + 1;
