@@ -1,0 +1,8 @@
+#badgeStyle {
+    cursor: pointer;
+}
+
+.nowPlayingText {
+    color: red;
+    font-size: x-small;
+}

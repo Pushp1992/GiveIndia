@@ -1,0 +1,48 @@
+.button.primary {
+    background-color: rgb(86, 196, 86);
+    size: 2em;
+    font-size: smaller;
+}
+
+.button.secondary {
+    background-color: rgb(73, 178, 219);
+    size: 2em;
+    font-size: smaller;
+}
+
+.button.warning {
+    background-color: rgb(216, 216, 37);
+    size: 2em;
+    font-size: small;
+}
+
+.button.playBtn {
+    background-color: greenyellow;
+    size: 2em;
+    font-size: small;
+
+    color: #fff;
+    background-color: #28a745;
+
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.button.deleteBtn {
+    color: #fff;
+    background-color:rgb(218, 73, 73);
+    display: inline-block;
+    size: 1em;
+    font-size: x-small;
+
+}
