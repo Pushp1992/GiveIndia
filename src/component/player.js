@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col, Form, FormGroup, Input, Card, CardBody, CardTitle, CardFooter, Badge, Alert } from "reactstrap";
 import ReactPlayer from 'react-player'
 
-import Reorder, {
-    reorder,
-    reorderImmutable,
-    reorderFromTo,
-    reorderFromToImmutable
-} from 'react-reorder';
+import Reorder from 'react-reorder';
 
 // custom Input and styles
 import '../component/common.css';
@@ -83,8 +78,12 @@ export default class YouTubePlayer extends Component {
         if (url.match(regExp)) {
             this.state.tempPlaylist.push(this.state.youTubeVideos.videoUrl)
             this.setState({ playlist: this.state.tempPlaylist })
-            this.setState({ counter: this.state.counter + 1})
-            url = '';
+            this.setState({ counter: this.state.counter + 1 })
+            this.state.youTubeVideos.videoUrl = '';
+
+            if(this.state.playlist.length === 0) {
+                this.setState({ currentVideo: url })
+            }
 
             console.log("counter", this.state.counter)
             CustomToastr.success("Video added to Playlist")
@@ -139,7 +138,7 @@ export default class YouTubePlayer extends Component {
                     <Row noGutters={false}>
                         <Col md={{ size: 5 }}>
                             <h2>YouTubePlayer</h2>
-                            <ReactPlayer url={this.state.currentVideo} playing={this.state.playlist.length === 0 ? false : true} onEnded={this.playNextVideo} controls={true} />
+                            <ReactPlayer url={this.state.currentVideo} playing={this.state.playlist.length > 0 ? true : false} onEnded={this.playNextVideo} controls={true} />
                         </Col>
                         <Col md={{ size: 6, offset: 1 }}>
                             <div><h2>Playlist</h2></div>
@@ -159,21 +158,18 @@ export default class YouTubePlayer extends Component {
                                 <Col md={{ size: 5 }}>
                                     <FormGroup>
                                         <Reorder
-                                            reorderId={this.state.currentVideo} // Unique ID that is used internally to track this list (required)
-                                            reorderGroup="reorder-group" // A group ID that allows items to be dragged between lists of the same group (optional)
-
-                                            component="ul" // Tag name or Component to be used for the wrapping element (optional), defaults to 'div'
-                                            placeholderClassName="placeholder" // Class name to be applied to placeholder elements (optional), defaults to 'placeholder'
-                                            draggedClassName="dragged" // Class name to be applied to dragged elements (optional), defaults to 'dragged'
-                                            lock="horizontal" // Lock the dragging direction (optional): vertical, horizontal (do not use with groups)
-                                            holdTime={500} // Default hold time before dragging begins (mouse & touch) (optional), defaults to 0
-                                            touchHoldTime={500} // Hold time before dragging begins on touch devices (optional), defaults to holdTime
-                                            mouseHoldTime={200} // Hold time before dragging begins with mouse (optional), defaults to holdTime
-
-                                            autoScroll={true} // Enable auto-scrolling when the pointer is close to the edge of the Reorder component (optional), defaults to true
-                                            disabled={false} // Disable reordering (optional), defaults to false
-                                            disableContextMenus={true} // Disable context menus when holding on touch devices (optional), defaults to true
-
+                                            reorderId={this.state.currentVideo}
+                                            reorderGroup="reorder-group"
+                                            component="ul"
+                                            placeholderClassName="placeholder"
+                                            draggedClassName="dragged"
+                                            lock="horizontal"
+                                            holdTime={500}
+                                            touchHoldTime={500}
+                                            mouseHoldTime={200}
+                                            autoScroll={true}
+                                            disabled={false}
+                                            disableContextMenus={true}
                                         >
                                             {
                                                 this.state.playlist.length !== 0 ?
@@ -181,19 +177,16 @@ export default class YouTubePlayer extends Component {
                                                         return (
                                                             <Row noGutters={false} key={video}>
                                                                 <Col md={{ size: 3 }}>
-                                                                    <label className="nowPlayingText"> S.No: {this.state.count}</label>
-                                                                </Col>
-                                                                <Col md={{ size: 3 }}>
                                                                     <Button handleClick={this.loadVideo} value={key} type="playBtn" label={`video ${video + 1}`} />
                                                                 </Col>
                                                                 {
                                                                     this.state.playlist.indexOf(this.state.currentVideo) === this.state.playlist.indexOf(key) ?
-                                                                        <Col md={{ size: 4 }}>
+                                                                        <Col md={{ size: 5, offset: 1 }}>
                                                                             <label className="nowPlayingText" >Now Playing . . .</label>
                                                                         </Col>
                                                                         : null
                                                                 }
-                                                                <Col md={{ size: 2 }}>
+                                                                <Col md={{ size: 2, offset: 1}}>
                                                                     <Button handleClick={this.removeVideo} value={key} type="deleteBtn" label="x" />
                                                                 </Col>
                                                             </Row>
