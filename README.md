@@ -47,9 +47,13 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 1. Show the Status of currently playing video.
 2. Re-order Videos in the Playlist
-3. Demo Video available, when there is no video added to Playlist
+3. Demo Video available, when there is no video added to Playlist.
+4. After removing the current video from the playlist, next video will be automatically played.
 
 ### `Application Validation`
 
 1. Will not allow the User to add empty Video URL.
 2. Validate the Video URL before adding to the Playlist.
+3. Check for the last video in the playlist.
+4. If last video is removed, player should automatically stop playing videos.
+5. Always check for the current video and next video availability in the playlist.

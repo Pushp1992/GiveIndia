@@ -111,6 +111,11 @@ export default class YouTubePlayer extends Component {
         this.state.playlist.splice(indexOfVideo, 1);
         this.setState(this.state.playlist);
 
+        if(indexOfVideo < this.state.playlist.length ) {
+            this.setState({currentVideo: this.state.playlist[indexOfVideo]});
+            console.log("next vide", this.state.currentVideo)
+        }
+
         CustomToastr.success(`video ${indexOfVideo + 1} is removed. \n Reshuffling your playlist`)
     }
 
