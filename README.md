@@ -47,3 +47,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 1. Show the Status of currently playing video.
 2. Re-order Videos in the Playlist
+3. Demo Video available, when there is no video added to Playlist
+
+### `Application Validation`
+
+1. Will not allow the User to add empty Video URL.
+2. Validate the Video URL before adding to the Playlist.

@@ -160,6 +160,9 @@ export default class YouTubePlayer extends Component {
                                         <Button handleClick={this.addVideoToPlaylist} type="warning" label="add video" />
                                     </FormGroup>
                                 </Col>
+                                <Col md={{size: 3}}>
+                                <a href="https://jsoneditoronline.org/#left=cloud.90764c201b40437eae526c9032e59c2b" target="_blank" id="videoList">Show List</a>
+                                </Col>
                             </Row>
                             <Row noGutters={true}>
                                 <Col md={{ size: 5 }}>
