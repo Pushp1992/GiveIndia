@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, FormGroup, Input, Card, CardBody, CardTitle, CardFooter, Badge, Alert } from "reactstrap";
+import { Container, Row, Col, FormGroup, Input} from "reactstrap";
 import ReactPlayer from 'react-player'
 
 import Reorder from 'react-reorder';
@@ -53,8 +53,6 @@ export default class YouTubePlayer extends Component {
                 }
             })
         )
-
-        console.log("input", this.state.youTubeVideos.videoUrl)
     }
 
     addVideoToPlaylist = (event) => {
@@ -68,8 +66,6 @@ export default class YouTubePlayer extends Component {
             CustomToastr.warning("URl cannot be blank")
             return false;
         }
-
-        console.log("playslist", this.state.playlist)
     }
 
     validateYoutubeVideo(url) {
@@ -113,7 +109,6 @@ export default class YouTubePlayer extends Component {
 
         if(indexOfVideo < this.state.playlist.length ) {
             this.setState({currentVideo: this.state.playlist[indexOfVideo]});
-            console.log("next vide", this.state.currentVideo)
         }
 
         CustomToastr.success(`video ${indexOfVideo + 1} is removed. \n Reshuffling your playlist`)
@@ -173,19 +168,9 @@ export default class YouTubePlayer extends Component {
                                 <Col md={{ size: 5 }}>
                                     <FormGroup>
                                         <Reorder
-                                            reorderId={this.state.currentVideo}
-                                            reorderGroup="reorder-group"
-                                            component="ul"
-                                            placeholderClassName="placeholder"
-                                            draggedClassName="dragged"
-                                            lock="horizontal"
-                                            holdTime={500}
-                                            touchHoldTime={500}
-                                            mouseHoldTime={200}
-                                            autoScroll={true}
-                                            disabled={false}
-                                            disableContextMenus={true}
-                                        >
+                                            reorderId={this.state.currentVideo} reorderGroup="reorder-group" component="ul" placeholderClassName="placeholder"
+                                            draggedClassName="dragged" lock="horizontal" holdTime={500} touchHoldTime={500} mouseHoldTime={200} autoScroll={true}
+                                            disabled={false} disableContextMenus={true}>
                                             {
                                                 this.state.playlist.length !== 0 ?
                                                     this.state.playlist.map((key, video) => {
