@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, FormGroup, Input} from "reactstrap";
 import ReactPlayer from 'react-player'
-
 import Reorder from 'react-reorder';
 
 // custom Input and styles
@@ -16,7 +15,6 @@ Container.propTypes = {
 Row.propTypes = {
     noGutters: PropTypes.bool
 }
-
 
 const defaultState = {
     youTubeVideos: {
@@ -45,8 +43,7 @@ export default class YouTubePlayer extends Component {
 
         var { name, value } = event.currentTarget;
 
-        this.setState(
-            prevState => ({
+        this.setState(prevState => ({
                 youTubeVideos: {
                     ...prevState.youTubeVideos,
                     [name]: value
@@ -80,8 +77,6 @@ export default class YouTubePlayer extends Component {
             if(this.state.playlist.length === 0) {
                 this.setState({ currentVideo: url })
             }
-
-            console.log("counter", this.state.counter)
             CustomToastr.success("Video added to Playlist")
 
         } else {
@@ -95,7 +90,6 @@ export default class YouTubePlayer extends Component {
 
         let selectedVideoUrl = event.currentTarget.value
         this.setState({ currentVideo: selectedVideoUrl })
-
         CustomToastr.success("Please wait.. Loading your video")
     }
 
@@ -110,7 +104,6 @@ export default class YouTubePlayer extends Component {
         if(indexOfVideo < this.state.playlist.length ) {
             this.setState({currentVideo: this.state.playlist[indexOfVideo]});
         }
-
         CustomToastr.success(`video ${indexOfVideo + 1} is removed. \n Reshuffling your playlist`)
     }
 
@@ -134,7 +127,6 @@ export default class YouTubePlayer extends Component {
             CustomToastr.warning("This was your Last Playlist video")
             return;
         }
-
         this.setState({ currentVideo: this.state.playlist[indexOfNextVideo] })
     }
 
