@@ -11,7 +11,7 @@
     "react-dom": "^16.13.1",
     "react-player": "^1.15.3",
     "react-reorder": "^3.0.0-alpha.7",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "reactstrap": "^8.4.1",
     "toastr": "^2.1.4"
   },
